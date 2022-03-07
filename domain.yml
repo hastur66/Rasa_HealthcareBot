@@ -22,6 +22,7 @@ entities :
   - patient_name
   - telephone
   - appointment_date
+  - service
 
 slots:
   pressure:
@@ -58,9 +59,9 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
-  utter_options:
-  - text: "I can guide you through Adverse drug reaction list, Blood pressure tracking, Hospitals and Pharmacies"
-  - text: "Offering support for Adverse drug reaction, Blood pressure, Hospitals and Pharmacies"
+  # utter_options:
+  # - text: "I can guide you through Adverse drug reaction list, Blood pressure tracking, Hospitals and Pharmacies"
+  # - text: "Offering support for Adverse drug reaction, Blood pressure, Hospitals and Pharmacies"
 
   utter_drugs:
   - text: "Navigating to Adverse drug reaction module" 
@@ -97,6 +98,14 @@ responses:
 
   utter_action_hospital_search:
   - text: "Hospital search is complete"
+
+  utter_options:
+  - text: "What service do you want?"
+    buttons:
+    - title: "X-ray"
+      payload: '/options{{"service":"x-ray"}}'
+    - title: "Check up"
+      payload: '/options{{"service":"check-up"}}'
 
 
 forms:

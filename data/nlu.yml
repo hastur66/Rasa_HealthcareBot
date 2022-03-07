@@ -140,3 +140,23 @@ nlu:
     - I want to channel a docter
     - Is Docter [Kapila]("entity": "docter") availabe?
     - I want to set a appointement with Dr.[Perera]("entity": "docter")
+
+
+- synonym: telephone
+  examples: |
+    - telephone number
+    - phone number
+    - mobile number
+
+- lookup: hospital
+  examples: |
+    - hospital1
+    - hospital2
+
+- regex: telephone
+  examples: |
+    - \d{10}
+- intent: docter_search
+  examples: |
+    - my account number is [1234567891](telephone)
+    - This is my account number [1234567891](telephone)

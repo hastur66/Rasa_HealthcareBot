@@ -17,7 +17,7 @@ class AppoinmentForm(FormAction):
     def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
         return {
             "patient_name": [self.from_text()],
-            "telephone": [self.from_text()],
+            "telephone": [self.from_entity("telephone")],
             "appointment_date": [self.from_text()],
             "pressure": [self.from_entity("pressure")]
         }

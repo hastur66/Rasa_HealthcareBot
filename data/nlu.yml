@@ -19,7 +19,6 @@ nlu:
 
 - intent: goodbye
   examples: |
-    - good afternoon
     - cu
     - good by
     - cee you later
@@ -109,13 +108,16 @@ nlu:
 
 - intent: blood_pressure
   examples : |
+    - I have [high]{"entity": "pressure", "value": "high"} blood pressure.
+    - I have [low]{"entity": "pressure", "value": "low"} blood pressure.
+
+- intent: blood_pressure_navigate
+  examples : |
     - Open blood pressure module 
     - Task related to blood pressure
     - Blood pressure data entry 
     - I want to log blood pressure results 
     - Blood pressure data management
-    - I have [high]{"entity": "pressure", "value": "high"} blood pressure.
-    - I have [low]{"entity": "pressure", "value": "low"} blood pressure.
 
 - intent: pharmacy_search
   examples: |
@@ -132,3 +134,9 @@ nlu:
     - I want to search hospital data
     - Hospital lookup for patient 
     - Looking up hospital details
+
+- intent: docter_search
+  examples: |
+    - I want to channel a docter
+    - Is Docter [Kapila]("entity": "docter") availabe?
+    - I want to set a appointement with Dr.[Perera]("entity": "docter")

@@ -13,9 +13,15 @@ intents:
   - blood_pressure
   - pharmacy_search
   - hospital_search
+  - blood_pressure_navigate
+  - docter_search
 
 entities :
   - pressure
+  - docter
+  - patient_name
+  - telephone
+  - appointment_date
 
 slots:
   pressure:
@@ -23,6 +29,14 @@ slots:
     values:
       - high
       - low
+  docter:
+    type: text
+  patient_name:
+    type: text
+  telephone:
+    type: text
+  appointment_date:
+    type: text
 
 responses:
   utter_greet:
@@ -51,14 +65,45 @@ responses:
   utter_drugs:
   - text: "Navigating to Adverse drug reaction module" 
 
-  utter_bloodpressure:
-  - text: "Navigating to Blood Pressure module"
+  utter_bloodpressure_high:
+  - text: "{pressure} blood pressure"
 
+  utter_bloodpressure_low:
+  - text: "Low blood pressure"
+
+  utter_bloodpressure_normal:
+  - text: "Normal blood pressure"
+  
+  utter_bloodpressure_navigate:
+  - text: "Navigating to Blood Pressure module"
+  
   utter_pharmacy:
   - text: "Navigating to pharmacy module"
 
   utter_hospital:
   - text: "Navigating to hospital module"
+
+  utter_ask_patient_name:
+  - text: "What is your name?"
+
+  utter_ask_telephone:
+  - text: "What is your telephone?"
+  
+  utter_ask_appointment_date:
+  - text: "What is your appointement date?"
+
+  utter_ask_pressure:
+  - text: "What is your pressure?"
+
+  utter_action_hospital_search:
+  - text: "Hospital search is complete"
+
+
+forms:
+  - appointment_form 
+    
+actions:
+  - action_hospital_search
 
 session_config:
   session_expiration_time: 60

@@ -22,17 +22,61 @@ rules:
   - intent: adverse_drug
   - action: utter_drugs
 
-- rule: Says 'Navigating to blood pressure module' anytime user ask for blood pressure
-  steps:
-  - intent: blood_pressure
-  - action: utter_bloodpressure
-
-- rule: Says 'Navigating to hospital module' anytime user ask for hospitals 
-  steps:
-  - intent: hospital_search
-  - action: utter_hospital
-
 - rule: Says 'Navigating to pharmacy module' anytime user ask for pharmacy
   steps:
   - intent: pharmacy_search
   - action: utter_pharmacy
+
+- rule: Says 'Navigating to blood presure' anytime user ask for pharmacy
+  steps:
+  - intent: blood_pressure_navigate
+  - action: utter_bloodpressure_navigate
+
+# rule for form activation
+- rule: activate appointment_form
+  steps:
+  - intent: docter_search
+  - action: appointment_form
+  - active_loop: appointment_form
+
+# form deactivation
+- rule: submit appointment_form
+  condition:
+  - active_loop: appointment_form
+  steps:
+  - action: appointment_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+
+# conditional rule
+- rule: selecting more_info when current_menu is not set
+  condition:
+  - slot_was_set:
+    - pressure: null
+  steps:
+  - intent: blood_pressure
+  - action: utter_bloodpressure_normal
+
+- rule: selecting more_info when low is not set
+  condition:
+  - slot_was_set:
+    - pressure: low
+  steps:
+  - intent: blood_pressure
+  - action: utter_bloodpressure_low
+
+- rule: selecting more_info when highu is not set
+  condition:
+  - slot_was_set:
+    - pressure: high
+  steps:
+  - intent: blood_pressure
+  - action: utter_bloodpressure_high
+
+
+# custom action for search
+- rule: Says 'Navigating to hospital module' anytime user ask for hospitals 
+  steps:
+  - intent: hospital_search
+  - action: action_hospital_search

@@ -134,9 +134,53 @@ nlu:
     - I want to search hospital data
     - Hospital lookup for patient 
     - Looking up hospital details
+    - I want to visit [ZXC]("entity": hospital)
+    - Can I have a apointment in [ABC]("entity": hospital)
 
 - intent: docter_search
   examples: |
     - I want to channel a docter
-    - Is Docter [Kapila]("entity": "docter") availabe?
-    - I want to set a appointement with Dr.[Perera]("entity": "docter")
+    - Is Docter [Kevin]("entity": "docter") availabe?
+    - I want to set a appointement with Dr.[Adam]("entity": "docter")
+
+- intent: info_email
+  examples: |
+    - My email is [abs@gmail.com]("entity": "email") 
+    - Email is [xatyts@gmail.com]("entity": "email")
+
+# regex for email without form #(check more patterns)
+- regex: email
+  examples: |
+    - (\S)+[@](\S)+[.](\S)+
+
+
+#
+- intent: lab_search
+  examples: |
+    - I want to know about lab networks
+    - What are the labs availabel?
+    - What lab services do you proivde?
+
+- synonym: lab
+  examples: |
+    - lab
+    - laboratory
+
+ 
+- lookup: hospital
+  examples: |
+    - ABC
+    - ZXC
+
+
+#subintent
+- intent: contact/question_email
+  examples: |
+    - What is hospitla's email?
+    - Can I have the hospital's email?
+
+- intent: contact/question_phone
+  examples: |
+    - What is hospitla's phone number?
+    - Can I have the hospital's phone number?
+

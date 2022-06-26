@@ -15,6 +15,10 @@ intents:
   - hospital_search
   - blood_pressure_navigate
   - docter_search
+  - lab_search
+  - lab_search_select
+  - info_email
+  - contact
 
 entities :
   - pressure
@@ -22,6 +26,9 @@ entities :
   - patient_name
   - telephone
   - appointment_date
+  - hospital
+  - service
+  - email
 
 slots:
   pressure:
@@ -36,6 +43,13 @@ slots:
   telephone:
     type: text
   appointment_date:
+    type: text
+  service:
+    type: categorical
+    values:
+      - Biochemistry
+      - Haematology
+  email:
     type: text
 
 responses:
@@ -98,13 +112,34 @@ responses:
   utter_action_hospital_search:
   - text: "Hospital search is complete"
 
+  utter_ask_service:
+  - text: "What lab service you need?"
+    buttons:
+    - title: "Clinical Biochemistry"
+      payload: '/lab_search_select{{"service":"Clinical Biochemistry"}}'
+    - title: "Haematology"
+      payload: '/lab_search_select{{"service":"Haematology"}}'
 
+  utter_lab_search_select:
+  - text: "You habe select {service}"
+
+#subintent (FAQ)
+  utter_contact/email:
+  - text: "Hospital email is absac@g,aii.com"
+
+  utter_contact/phone)num:
+  - text: "Hospital phone number is is 0111243235435"
+ 
 forms:
   - appointment_form 
     
 actions:
   - action_hospital_search
+  - action_clear_service
 
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
+
+#rasa test nlu --cros_valdion --folds 5 --runs 1

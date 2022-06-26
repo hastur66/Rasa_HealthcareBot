@@ -80,3 +80,21 @@ rules:
   steps:
   - intent: hospital_search
   - action: action_hospital_search
+
+# labs
+- rule: select available lab services
+  steps:
+  - intent: lab_search
+  - action: utter_ask_service
+
+- rule: Selct lab search
+  steps: 
+  - intent: lab_search_select
+  - action: utter_lab_search_select
+  - action: action_clear_service #(slot is cleared)
+
+#subintent (FAQ)
+- rule: give contacts
+  steps: 
+  - intent: contact
+  - action: utter_contact

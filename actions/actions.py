@@ -12,14 +12,15 @@ class AppoinmentForm(FormAction):
 
     @staticmethod
     def required_slots(tracker: Tracker) -> List[Text]:
-        return ["patient_name", "telephone", "appointment_date", "pressure"]
+        return ["patient_name", "telephone", "appointment_date", "pressure", "service"]
 
     def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
         return {
             "patient_name": [self.from_text()],
             "telephone": [self.from_text()],
             "appointment_date": [self.from_text()],
-            "pressure": [self.from_entity("pressure")]
+            "pressure": [self.from_entity("pressure")],
+            "service": [self.from_entity("service")]
         }
     
     @staticmethod
@@ -39,7 +40,7 @@ class AppoinmentForm(FormAction):
             domain: Dict[Text, Any],
     ) -> List[Dict]:
         dispatcher.utter_message(text = "Form is complete")
-        return [SlotSet('patient_name', None), SlotSet('telephone', None), SlotSet('appointment_date', None), SlotSet('pressure', None)]
+        return [SlotSet('patient_name', None), SlotSet('telephone', None), SlotSet('appointment_date', None), SlotSet('pressure', None), SlotSet('service', None)]
 
 # custom action search
 class ActionHospitalSearch(Action):
@@ -55,3 +56,18 @@ class ActionHospitalSearch(Action):
         #logic
         dispatcher.utter_message(template = 'utter_action_hospital_search')
         return []
+
+# custom  lab search
+class ActionClearService(Action):
+    def name(self) -> Text:
+        return "action_clear_service"
+
+    async def run(
+            self,
+            dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+        #logic
+        dispatcher.utter_message(text = 'Clear slot for lab search') 
+        return [SlotSet('service', None)]

@@ -1,0 +1,41 @@
+version: '3.0'
+
+networks:
+  health_net:
+    external: false
+
+services:
+  healthbot_core:
+    build: ./
+    container_name: healthbot_core
+    restart: always
+    networks:
+      - health_net
+    volumes:
+      - ./:/app/
+    command:
+      - "run"
+      - "--enable-api"
+      - "--cors"
+      - "*"
+      - "--credential"
+      - "credentials.yml"
+      - "--endpoints"
+      - "endpoints.yml"
+      - "--port"
+      - "5036"
+    links:
+      - healthbot_actions
+    expose: [5036]
+
+  healthbot_actions:
+    build: ./actions
+    container_name: healthbot_actions
+    restart: always
+    networks:
+      - health_net
+    volumes:
+      - ./actions:/app/actions
+    expose: [5055]
+    env_file:
+      - .env

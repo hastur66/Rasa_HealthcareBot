@@ -22,9 +22,9 @@ jobs:
         uses: RasaHQ/rasa-train-test-gha@main
         with:
           requirements_file: requirements.txt
-          data_validate: true
+          data_validate: false
           rasa_train: true
-          cross_validation: true
+          cross_validation: false
           rasa_test: true
           test_type: all
           publish_summary: true

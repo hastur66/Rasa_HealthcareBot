@@ -23,9 +23,9 @@ jobs:
         with:
           rasa_version: '2.2.8-full'
           requirements_file: requirements.txt
-          data_validate: true
+          data_validate: false
           rasa_train: true
-          cross_validation: true
+          cross_validation: false
           rasa_test: true
           test_type: all
           publish_summary: true

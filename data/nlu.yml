@@ -161,17 +161,30 @@ nlu:
     - What are the labs availabel?
     - What lab services do you proivde?
 
+- intent: docter_search
+  examples: |
+    - my account number is [1234567891](telephone)
+    - This is my account number [1234567891](telephone)
+
 - synonym: lab
   examples: |
     - lab
     - laboratory
 
- 
+- synonym: telephone
+  examples: |
+    - telephone number
+    - phone number
+    - mobile number
+
 - lookup: hospital
   examples: |
-    - ABC
-    - ZXC
+    - hospital1
+    - hospital2
 
+- regex: telephone
+  examples: |
+    - \d{10}
 
 #subintent
 - intent: contact/question_email

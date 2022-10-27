@@ -72,9 +72,17 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
+  # utter_options:
+  # - text: "I can guide you through Adverse drug reaction list, Blood pressure tracking, Hospitals and Pharmacies"
+  # - text: "Offering support for Adverse drug reaction, Blood pressure, Hospitals and Pharmacies"
+  
   utter_options:
-  - text: "I can guide you through Adverse drug reaction list, Blood pressure tracking, Hospitals and Pharmacies"
-  - text: "Offering support for Adverse drug reaction, Blood pressure, Hospitals and Pharmacies"
+  - text: "What service do you want?"
+    buttons:
+    - title: "X-ray"
+      payload: '/options{{"service":"x-ray"}}'
+    - title: "Check up"
+      payload: '/options{{"service":"check-up"}}'
 
   utter_drugs:
   - text: "Navigating to Adverse drug reaction module" 

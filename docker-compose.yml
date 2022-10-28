@@ -26,6 +26,8 @@ services:
       - "5005"
     links:
       - healthbot_actions
+    ports:
+      - "5005:5005"
     expose: [5005]
 
   healthbot_actions:

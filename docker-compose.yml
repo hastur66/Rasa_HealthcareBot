@@ -23,10 +23,18 @@ services:
       - "--endpoints"
       - "endpoints.yml"
       - "--port"
-      - "5036"
+      - "5005"
     links:
       - healthbot_actions
-    expose: [5036]
+    ports:
+      - "5005:5005"
+    expose: [5005]
+    deploy:
+      resources:
+        limits:
+          cpus: 1
+          memory: 1024M
+
 
   healthbot_actions:
     build: ./actions
@@ -39,3 +47,8 @@ services:
     expose: [5055]
     env_file:
       - .env
+    deploy:
+      resources:
+        limits:
+          cpus: .25
+          memory: 250M

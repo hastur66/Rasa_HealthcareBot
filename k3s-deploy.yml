@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rasa_healthbot
+spec:
+  selector:
+    matchLabels:
+      app: rasa_healthbot
+  template:
+    metadata:
+      labels:
+        app: rasa_healthbot
+    spec:
+      containers:
+      - name: rasa_healthbot_core
+        image: healthbot_core
+        command:
+        - "run"
+        - "--enable-api"
+        - "--cors"
+        - "*"
+        - "--credential"
+        - "credentials.yml"
+        - "--endpoints"
+        - "endpoints.yml"
+        - "--port"
+        - "5005"
+        volumes:
+        - ./:/app/
+        resources:
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5005
+      - name: rasa_healthbot_action
+        image: healthbot_actions
+        volumes:
+        - ./actions:/app/actions
+        ports:
+        - containerPort: 5055
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rasa_healthbot
+spec:
+  selector:
+    app: rasa_healthbot
+  ports:
+  - port: 5005
+    targetPort: 80

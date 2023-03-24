@@ -11,13 +11,13 @@ sudo chgrp -R root . && sudo chmod -R 770 .
 ```
 deploy bot :
 ```
-docker-compose up -d
+bash docker_up.sh
 ```
 view logs :
 ```
-docker-compose logs
+bash docker_logs.sh
 ```
 shutdown service :
 ```
-docker-compose down
+bash docker_down.sh
 ```

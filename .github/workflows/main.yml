@@ -22,7 +22,6 @@ jobs:
         uses: RasaHQ/rasa-train-test-gha@main
         with:
           rasa_version: '2.2.8-full'
-          requirements_file: requirements.txt
           data_validate: false
           rasa_train: true
           cross_validation: false
